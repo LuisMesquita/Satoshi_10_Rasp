@@ -18,6 +18,9 @@ app.post('/', (req, res) => {
 	res.send('ligou')
 })
 
+app.use(function(req, res) {
+    res.status(404).send({ error: 'Serviço não encontrado' });
+});
 
 const Gpio = require('onoff').Gpio;
 
