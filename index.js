@@ -24,7 +24,7 @@ app.post('/', function(req, res) {
     actLed(1, 1)
   }
 
-  res.send(user_id + ' ' + token + ' ' + geo);
+  res.send();
 });
 
 app.use(function(req, res) {
