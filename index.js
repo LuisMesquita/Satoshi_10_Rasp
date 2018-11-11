@@ -49,6 +49,30 @@ function actLed(color, value) {
     });
 }
 
+//Botões
+const sw1 = new Gpio(6, 'in', 'falling', {debounceTimeout: 200});
+const sw2 = new Gpio(5, 'in', 'both');
+
+sw1.watch(function (err, value) {
+    if (err) {        
+        console.log("Switch 1 ERROR", err);
+    } else {
+        state_sw1 = 0;
+        led["red"].writeSync(state_sw1);        
+        led["yellow"].writeSync(state_sw1);
+    }
+});
+
+sw2.watch(function (err, value) {
+    if (err) {        
+        console.log("Switch 2 ERROR", err);
+    } else {
+        state_sw1 = 0;
+        led["red"].writeSync(state_sw1);        
+        led["yellow"].writeSync(state_sw1);
+    }
+});
+
 // var longBlink = false;
 var timesBlinked = 0;
 var totalBlinks = 7;
