@@ -4,7 +4,14 @@ const app = express()
 const port = 3000
 app.listen(port, () => console.log('Server running on port ' + port))
 
-app.post('/', (req, res) => actLed(2, 1))
+app.post('/', (req, res) => {
+	const { sucess } = req.body
+
+	if (sucess)
+		actLed(1, 1)
+	else 
+		actLed(3,1)
+})
 
 
 const Gpio = require('onoff').Gpio;
@@ -24,3 +31,8 @@ function actLed(color, value) {
         }
     });
 }
+
+setInterval(function () {
+    value = value === 0 ? 1 : 0;
+    actLed(2, value);    
+},10800);
