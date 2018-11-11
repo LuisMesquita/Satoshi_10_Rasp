@@ -10,11 +10,11 @@ app.use(cors())
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
 
-const port = 3000
+const port = 8080
 app.listen(port, () => console.log('Server running on port ' + port))
 
 app.post('/', function(req, res) {
-  const { success } = req.bodyParser
+  const { success } = req.body
 
   console.log(success)
 
@@ -47,6 +47,19 @@ function actLed(color, value) {
             console.log("LED ERROR -", err);
         }
     });
+}
+
+// var longBlink = false;
+var timesBlinked = 0;
+var totalBlinks = 7;
+var totalInterations = 4;
+
+function toggleLed() {
+    value = value === 0 ? 1 : 0;
+    actLed(2, value);
+    // if (timesBlinked) {
+
+    // }
 }
 
 setInterval(function () {
