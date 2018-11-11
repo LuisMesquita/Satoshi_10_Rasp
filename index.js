@@ -13,23 +13,26 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
 const port = 3000
 app.listen(port, () => console.log('Server running on port ' + port))
 
-app.post('/light', (req, res) => {
-	const { success } = req.body
-	console.log(success)
-	if (success) {
-		actLed(1, 1)
-		console.log('sucesso')
-	} else {
-		actLed(3,1)
-		console.log('falha')
-	}
-
-	res.send('ligou')
-})
-
 app.use(function(req, res) {
     res.status(404).send({ error: 'Serviço não encontrado' });
 });
+
+app.get('/success', (req, res) => {
+    actLed(1, 1)
+    console.log('sucesso')
+
+    res.send('foi')
+    return
+})
+
+app.get('/failure', (req, res) => {   
+    
+    actLed(3,1)
+    console.log('falha')
+
+    res.send('foi')
+    return
+})
 
 const Gpio = require('onoff').Gpio;
 
