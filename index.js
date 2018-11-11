@@ -17,7 +17,9 @@ app.use(function(req, res) {
     res.status(404).send({ error: 'Serviço não encontrado' });
 });
 
-app.get('/success', (req, res) => {
+const router = express.Router();
+
+router.get('/success', async (req, res) => {
     actLed(1, 1)
     console.log('sucesso')
 
@@ -25,14 +27,16 @@ app.get('/success', (req, res) => {
     return
 })
 
-app.get('/failure', (req, res) => {   
-    
-    actLed(3,1)
+router.get('/failure', async (req, res) => {
+     actLed(3,1)
     console.log('falha')
 
     res.send('foi')
     return
 })
+
+
+app.use(router)
 
 const Gpio = require('onoff').Gpio;
 
