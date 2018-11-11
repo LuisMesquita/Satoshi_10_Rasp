@@ -12,26 +12,20 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
 
 const port = 3000
 app.listen(port, () => console.log('Server running on port ' + port))
-const router = express.Router();
 
-router.get('/success', async (req, res) => {
+app.post('/', function(req, res) {
+  const { success } = req.bodyParser
+
+  console.log(success)
+
+  if(success) {
+    actLed(3, 1)
+  } else {
     actLed(1, 1)
-    console.log('sucesso')
+  }
 
-    res.send('foi')
-    return
-})
-
-router.get('/failure', async (req, res) => {
-     actLed(3,1)
-    console.log('falha')
-
-    res.send('foi')
-    return
-})
-
-
-app.use(router)
+  res.send(user_id + ' ' + token + ' ' + geo);
+});
 
 app.use(function(req, res) {
     res.status(404).send({ error: 'Serviço não encontrado' });
