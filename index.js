@@ -12,11 +12,6 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
 
 const port = 3000
 app.listen(port, () => console.log('Server running on port ' + port))
-
-app.use(function(req, res) {
-    res.status(404).send({ error: 'Serviço não encontrado' });
-});
-
 const router = express.Router();
 
 router.get('/success', async (req, res) => {
@@ -37,6 +32,10 @@ router.get('/failure', async (req, res) => {
 
 
 app.use(router)
+
+app.use(function(req, res) {
+    res.status(404).send({ error: 'Serviço não encontrado' });
+});
 
 const Gpio = require('onoff').Gpio;
 
