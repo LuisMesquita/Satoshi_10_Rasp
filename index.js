@@ -41,6 +41,8 @@ function actLed(color, value) {
 }
 
 setInterval(function () {
-    value = value === 0 ? 1 : 0;
-    actLed(2, value);    
-},10800);
+    setInterval(function () {
+        value = value === 0 ? 1 : 0;
+        actLed(2, value);    
+    },800);
+},1800);
