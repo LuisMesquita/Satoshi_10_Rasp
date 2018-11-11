@@ -1,10 +1,20 @@
 const express = require('express')
+const bodyParser = require('body-parser')
+const helmet = require('helmet');
+const path = require('path')
+const cors = require('cors')
+
+app.use(helmet());
 const app = express()
+
+app.use(cors())
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
 
 const port = 3000
 app.listen(port, () => console.log('Server running on port ' + port))
 
-app.post('/', (req, res) => {
+app.post('/light', (req, res) => {
 	const { success } = req.body
 	console.log(success)
 	if (success) {
