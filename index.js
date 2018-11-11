@@ -10,8 +10,9 @@ app.use(cors())
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
 
-const port = 8080
-app.listen(port, () => console.log('Server running on port ' + port))
+const port = 8888
+const ip = 0.0.0.0
+app.listen(port, ip, () => console.log('Server running on port ' + port))
 
 app.post('/', function(req, res) {
   const { success } = req.body
@@ -54,6 +55,7 @@ const sw1 = new Gpio(6, 'in', 'falling', {debounceTimeout: 200});
 const sw2 = new Gpio(5, 'in', 'both');
 
 sw1.watch(function (err, value) {
+    console.log('s1')
     if (err) {        
         console.log("Switch 1 ERROR", err);
     } else {
@@ -64,6 +66,7 @@ sw1.watch(function (err, value) {
 });
 
 sw2.watch(function (err, value) {
+  console.log('s2')
     if (err) {        
         console.log("Switch 2 ERROR", err);
     } else {
