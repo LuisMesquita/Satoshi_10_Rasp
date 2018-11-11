@@ -5,12 +5,17 @@ const port = 3000
 app.listen(port, () => console.log('Server running on port ' + port))
 
 app.post('/', (req, res) => {
-	const { sucess } = req.body
-
-	if (sucess)
+	const { success } = req.body
+	console.log(success)
+	if (success) {
 		actLed(1, 1)
-	else 
+		console.log('sucesso')
+	} else {
 		actLed(3,1)
+		console.log('falha')
+	}
+
+	res.send('ligou')
 })
 
 
